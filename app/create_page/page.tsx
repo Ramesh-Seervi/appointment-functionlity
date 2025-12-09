@@ -7,7 +7,6 @@ export default function CreatePage() {
   const [fileName, setFileName] = useState("");
 
   useEffect(() => {
-    // Get ID from query params
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id") || "0";
 
@@ -16,10 +15,8 @@ export default function CreatePage() {
       return;
     }
 
-    // Generate random number
     const random = Math.floor(100000 + Math.random() * 900000);
     const now = new Date().toLocaleString();
-
     const generatedFileName = `page_${random}.html`;
 
     const htmlContent = `
@@ -35,11 +32,9 @@ export default function CreatePage() {
       </html>
     `;
 
-    // Create file blob
     const blob = new Blob([htmlContent], { type: "text/html" });
     const url = URL.createObjectURL(blob);
 
-    // Auto download
     const a = document.createElement("a");
     a.href = url;
     a.download = generatedFileName;

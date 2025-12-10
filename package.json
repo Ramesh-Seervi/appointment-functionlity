@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "preview": "serve out -p 3000",
+    "build:preview": "npm run build && npm run preview",
+    "start": "npm run dev"
   },
   "dependencies": {
     "next": "16.0.8",

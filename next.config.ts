@@ -1,10 +1,26 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+// Use the EXACT SAME spelling everywhere:
+const basePath = '/appointment-functionality'; // Correct spelling
+
 const nextConfig = {
-  output: 'export', // Add this line
+  // Remove experimental.appDir - it's deprecated
+  
+  // Production settings
+  ...(isProd && {
+    output: 'export',
+    basePath: basePath,
+    trailingSlash: true,
+  }),
+  
   images: {
-    unoptimized: true, // Also add this
+    unoptimized: isProd,
+  },
+  
+  // Optional: Add compiler for better performance
+  compiler: {
+    removeConsole: isProd,
   },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
